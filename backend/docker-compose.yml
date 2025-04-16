@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  db:
+    container_name: test-task-micro-it-db
+    image: postgres:15.2
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "5436:5432"
+    volumes:
+      - test-task-micro-it-db:/var/lib/postgresql/data
+
+volumes:
+  test-task-micro-it-db:

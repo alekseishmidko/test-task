@@ -1,24 +1,22 @@
 {
-    "compilerOptions": {
-        "target": "esnext",
-        "module": "nodenext",
-        "resolveJsonModule": true,
-        "declaration": true,
-        "declarationMap": true,
-        "sourceMap": true,
-        "outDir": "dist",
-        "rootDir": "src",
-        "strict": true,
-        "noImplicitAny": true,
-        "moduleResolution": "nodenext",
-        "baseUrl": "src",
-        "paths": {},
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
-    },
-    "include": [
-        "./src/**/*"
-    ]
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "nodenext",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "noImplicitAny": true,
+    "moduleResolution": "nodenext",
+    "baseUrl": "./src",
+    "paths": {},
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["./src/**/*"]
 }

@@ -1,16 +1,10 @@
-CREATE DATABASE IF NOT EXISTS `stations`;
+CREATE TABLE IF NOT EXISTS "Station" (
+  "id" SERIAL PRIMARY KEY,
+  "name" VARCHAR(128) NOT NULL UNIQUE
+);
 
-USE `stations`;
-
-CREATE TABLE IF NOT EXISTS `Station` (
-    `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-    `name` varchar(128) NOT NULL COMMENT 'Station name',
-    PRIMARY KEY (`id`),
-    UNIQUE `UNIQ_name` (`name`)
-) ENGINE InnoDB COMMENT 'Stations';
-
-CREATE TABLE IF NOT EXISTS `Tag` (
-    `stationId` int UNSIGNED NOT NULL,
-    `title` varchar(32) NOT NULL COMMENT 'Tag title',
-    UNIQUE `UNIQ_stationId+title` (`stationId`, `title`)
-) ENGINE InnoDB COMMENT 'Tags';
+CREATE TABLE IF NOT EXISTS "Tag" (
+  "stationId" INTEGER NOT NULL,
+  "title" VARCHAR(32) NOT NULL,
+  UNIQUE ("stationId", "title")
+);

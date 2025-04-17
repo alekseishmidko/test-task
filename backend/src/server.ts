@@ -14,6 +14,7 @@ db.query("SELECT 1")
 
 app.use(log);
 app.use(headers);
+app.use(express.json());
 app.use(router);
 
 const PORT = process.env.PORT ?? 5500;

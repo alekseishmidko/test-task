@@ -3,6 +3,7 @@ import db from "../db";
 import { readFileSync } from "fs";
 import { join } from "path";
 import { stationsService } from "../services/stations";
+import { tagsService } from "../services/tags";
 
 const router = express.Router();
 
@@ -34,6 +35,22 @@ router.get("/stations", async (req, res) => {
     res.json(stations);
   } catch (error) {
     res.status(500).json({ error: "internal-error-get-stations" });
+  }
+});
+router.patch("/tags", async (req, res) => {
+  try {
+    const { body } = req;
+
+    const isExistTag = await tagsService.findTag(body);
+
+    if (!isExistTag) {
+      res.status(404).json({ error: "tag-not-found" });
+    }
+
+    const tags = await tagsService.updateTag(body);
+    res.json(tags);
+  } catch (error) {
+    res.status(500).json({ error: "internal-error-patch-tags" });
   }
 });
 

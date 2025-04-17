@@ -1,19 +1,38 @@
 import db from "../../db";
+import { findTagDtoValidator, updateTagDtoValidator } from "./tag.validator";
+
 export interface Tag {
   stationId: number;
   title: string;
 }
 
-type UpdateTagDto = Tag & { newTitle: string };
+export type UpdateTagDto = Tag & { newTitle: string };
+
 export class TagService {
+  async findTag(dto: Tag): Promise<boolean> {
+    const validDto = await findTagDtoValidator.validate(dto);
+
+    const { stationId, title } = validDto;
+
+    const result = await db.query<Tag>(
+      `SELECT * FROM "Tag" WHERE "stationId" = $1 AND "title" = $2`,
+      [stationId, title]
+    );
+
+    return !!result.rows[0];
+  }
+
   async updateTag(dto: UpdateTagDto): Promise<void> {
+    const validDto = await updateTagDtoValidator.validate(dto);
+    const { newTitle, stationId, title } = validDto;
+
     const query = `
-          UPDATE "Tag"
-          SET "title" = $1
-          WHERE "stationId" = $2 AND "title" = $3
-        `;
-    const { newTitle, stationId, title } = dto;
+      UPDATE "Tag"
+      SET "title" = $1
+      WHERE "stationId" = $2 AND "title" = $3
+    `;
     const values = [newTitle, stationId, title];
+
     try {
       const result = await db.query(query, values);
 
